@@ -4,7 +4,7 @@ import { exec } from "child_process";
 import { GpuTelemetry } from "./interfaces";
 
 const NVIDIA_SMI_COMMAND =
-  "nvidia-smi --query-gpu=utilization.gpu,memory.used,memory.total,temperature.gpu --format=csv,noheader,nounit";
+  "nvidia-smi --query-gpu=utilization.gpu,memory.used,memory.total,temperature.gpu --format=csv,noheader,nounits";
 
 export default async function getGpuTelemetry(): Promise<GpuTelemetry | {}> {
   // Get GPU usage and temperature
