@@ -22,7 +22,7 @@ function executeNvidiaSmi(): Promise<string | Error> {
   return new Promise((resolve, reject) => {
     exec(NVIDIA_SMI_COMMAND, (error, stdout, stderr) => {
       console.log("----------Error getting GPU telemetry----------");
-      console.log(stderr)
+      console.log(stderr, error)
       console.log("----------Error getting GPU telemetry----------");
 
       if (error) return reject(new Error(stderr));
