@@ -9,6 +9,6 @@ app.get("/telemetry", async (req: Request, res: Response) => {
   res.json(await getTelemetryService(req.query.omitGpu === "true"));
 });
 
-app.listen(port, () => {
+app.listen(port, "0.0.0.0", () => {
   console.log(`Example app listening on port ${port}`);
 });
