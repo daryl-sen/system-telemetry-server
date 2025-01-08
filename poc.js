@@ -30,27 +30,6 @@ async function logSystemInfo() {
     } else {
       console.log("Could not retrieve CPU temperature.");
     }
-
-    // Get GPU usage and temperature
-    const gpuInfo = await new Promise((resolve, reject) => {
-      exec(
-        "nvidia-smi --query-gpu=utilization.gpu,memory.used,memory.total,temperature.gpu --format=csv,noheader,nounits",
-        (error, stdout, stderr) => {
-          if (error || stderr) {
-            reject(new Error(stderr));
-          } else {
-            const [gpuUsage, vramUsed, vramTotal, gpuTemp] = stdout
-              .split(",")
-              .map(Number);
-            resolve({ gpuUsage, vramUsed, vramTotal, gpuTemp });
-          }
-        }
-      );
-    });
-
-    console.log(`GPU Usage: ${gpuInfo.gpuUsage}%`);
-    console.log(`VRAM Usage: ${gpuInfo.vramUsed} MB / ${gpuInfo.vramTotal} MB`);
-    console.log(`GPU Temperature: ${gpuInfo.gpuTemp}°C`);
   } catch (error) {
     console.error("Error fetching system information:", error.message);
   }
