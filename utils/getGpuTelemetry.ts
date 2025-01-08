@@ -11,7 +11,9 @@ export default async function getGpuTelemetry(): Promise<GpuTelemetry | {}> {
   const gpuInfo = await executeNvidiaSmi();
 
   if (gpuInfo instanceof Error) {
+    console.log("----------Error getting GPU telemetry----------");
     console.error(gpuInfo.message);
+    console.log("----------Error getting GPU telemetry----------");
     return {};
   }
 
