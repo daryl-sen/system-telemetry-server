@@ -1,7 +1,7 @@
 {
   "name": "system-telemetry-server",
   "version": "1.0.0",
-  "main": "poc.js",
+  "main": "index.ts",
   "scripts": {
     "build": "npx tsc",
     "start": "node dist/index.js",
