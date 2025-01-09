@@ -1,10 +1,12 @@
-import { Request, Response } from "express";
-import express from "express";
-import getTelemetryService from "./services/getTelemetryService";
+import express, { Request, Response } from "express";
+import cors from "cors";
 import { Readable } from "stream";
+import getTelemetryService from "./services/getTelemetryService";
 
 const app = express();
 const port = 8080;
+
+app.use(cors());
 
 app.get("/telemetry", async (req: Request, res: Response) => {
   res.json(await getTelemetryService(req.query.omitGpu === "true"));
