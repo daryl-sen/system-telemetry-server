@@ -19,6 +19,7 @@ app.get("/stream", (req: Request, res: Response) => {
   });
 
   res.setHeader("Content-Type", "application/json");
+  res.setHeader("Access-Control-Allow-Origin", "*");
 
   const intervalId = setInterval(async () => {
     const telemetryData = await getTelemetryService(
