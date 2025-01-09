@@ -8,6 +8,16 @@ const port = 8080;
 
 app.use(cors());
 
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+  next();
+});
+
 app.get("/telemetry", async (req: Request, res: Response) => {
   res.json(await getTelemetryService(req.query.omitGpu === "true"));
 });
@@ -19,7 +29,6 @@ app.get("/stream", (req: Request, res: Response) => {
   });
 
   res.setHeader("Content-Type", "application/json");
-  res.setHeader("Access-Control-Allow-Origin", "*");
 
   const intervalId = setInterval(async () => {
     const telemetryData = await getTelemetryService(
